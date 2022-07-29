@@ -21,7 +21,7 @@ struct Banana {
 int main(){
 	using duplicate_list = list<base<Foo,3>, base<Banana, 2>, base<Bar, 2>, base<Baz,5>, base<Foo,4>, base<Baz, -1>, base<Banana,-2>>;
 
-	using reduced_list = typename matching<duplicate_list, list<>>::type;
+	using reduced_list = typename duplicate_list::reduced_type;
 	
 	std::cout<<"Duplicate List"<<std::endl;
 

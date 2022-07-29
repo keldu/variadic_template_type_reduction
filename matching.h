@@ -10,8 +10,18 @@ template<typename T, int64_t E>
 class base {
 };
 
+template<typename T, typename U>
+class matching;
+
 template<typename... T>
-struct list {};
+struct list {
+	static_assert(sizeof...(T) == 0, "Template type not supported");
+
+	static void print(){
+	}
+
+	using reduced_type = list<>;
+};
 
 template<typename T0, int64_t E0, typename... TL, int64_t... EL>
 struct list<base<T0,E0>, base<TL,EL>...> {
@@ -24,6 +34,8 @@ struct list<base<T0,E0>, base<TL,EL>...> {
 			list<base<TL,EL>...>::print();
 		}
 	}
+	
+	using reduced_type = typename matching<list<base<T0,E0>, base<TL,EL>...>, list<>>::type;
 };
 
 template<typename... T>

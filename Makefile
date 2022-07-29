@@ -2,7 +2,7 @@
 
 all: matching
 
-matching:
+matching: main.cpp matching.h
 	clang++ -std=c++17 main.cpp -o matching
 
 run: all
